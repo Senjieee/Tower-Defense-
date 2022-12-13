@@ -25,5 +25,9 @@ class Bullet {
   void act() {
     x = x + vx;
     y = y + vy;
+    
+    if (x < 0 || x > width || y < -100 || y > height) {
+      lives = 0;
+    }
   }
 }
