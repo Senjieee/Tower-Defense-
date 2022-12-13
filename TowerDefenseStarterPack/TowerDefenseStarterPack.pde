@@ -10,6 +10,7 @@ final int PLAY     = 1;
 final int BUILD    = 2;
 final int GAMEOVER = 3;
 int mode;
+int waveCounter;
 
 PFont doom;
 
@@ -24,17 +25,20 @@ color grey = color(59, 53, 54);
 color black = color(0);
 color white = color(255);
 color greenSwamp = color(32, 100, 28);
+color yellowBullet = color(255, 196, 0);
 
 //Mouse & Keyboard interaction variables
 boolean mouseReleased;
 boolean wasPressed;
 
 //Buttons
-Button start;
+Button start, nextWave;
 
 //Collections of objects
 Node[] nodes;
-Mob mobs;
+ArrayList<Mob> mobs;
+ArrayList<Tower> towers;
+ArrayList<Bullet> bullets;
 
 //Images and Gifs
 
@@ -62,6 +66,7 @@ void initializeModes() {
   mode = INTRO;
   doom = createFont("DooM.ttf", 200);
   textFont(doom);
+  waveCounter = 0;
 }
 
 void initializeVariables() {
@@ -70,7 +75,11 @@ void initializeVariables() {
   //Load Fonts
 
   //Create Collections of Objects
-  mobs = new Mob(0, 400, 1, 0);
+  mobs = new ArrayList<Mob>();
+  towers = new ArrayList<Tower>();
+  bullets = new ArrayList<Bullet>();
+  
+  towers.add(new Tower(100, 200, 0, 100));
 }
 
 void makeButtons() {
@@ -78,6 +87,7 @@ void makeButtons() {
   start = new Button("START", width/2, 3*height/5, 200, 100, white, black);
 
   //PLAY - Next Wave, To Build Mode
+  nextWave = new Button("", 900, 100, 140, 100, green, white);
 
   //BUILD - To play mode, Buy Sniper, Buy Gun, Buy AoE
 
@@ -89,14 +99,14 @@ void makeNodes() {
   //Plot the nodes on the map
   nodes[0] = new Node(200, 400, 0, -1);
   nodes[1] = new Node(200, 200, 1, 0);
-  nodes[2] = new Node(450, 200, 0, 1);
-  nodes[3] = new Node(450, 600, -1, 0);
+  nodes[2] = new Node(400, 200, 0, 1);
+  nodes[3] = new Node(400, 600, -1, 0);
   nodes[4] = new Node(300, 600, 0, -1);
   nodes[5] = new Node(300, 500, 1, 0);
-  nodes[6] = new Node(600, 500, 0, -1);
-  nodes[7] = new Node(600, 400, 1, 0);
-  nodes[8] = new Node(800, 400, 0, -1);
-  nodes[9] = new Node(800, 300, 1, 0);
+  nodes[6] = new Node(500, 500, 0, -1);
+  nodes[7] = new Node(500, 400, 1, 0);
+  nodes[8] = new Node(600, 400, 0, -1);
+  nodes[9] = new Node(600, 300, 1, 0);
 }
 
 
