@@ -37,7 +37,7 @@ class Tower {
     } else if (towerMode == PLACING) {
       square(mouseX, mouseY, 40);
       if (mousePressed) {
-        mode = PLACED;
+        towerMode = PLACED;
         x = mouseX;
         y = mouseY;
       }

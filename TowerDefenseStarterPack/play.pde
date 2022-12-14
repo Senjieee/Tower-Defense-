@@ -59,7 +59,9 @@ void animation() {
   int i = 0;
   while (i < mobs.size()) {
     Mob myMob = mobs.get(i);
-    myMob.act();
+    if (mode == PLAY) {
+      myMob.act();
+    }
     myMob.show();
     if (myMob.lives <= 0) {
       mobs.remove(i);
@@ -72,7 +74,9 @@ void animation() {
   while (i < towers.size()) {
     Tower myTower = towers.get(i);
     if (mobs.size() > 0) {
-      myTower.act();
+      if (mode == PLAY) {
+        myTower.act();
+      }
     }
     myTower.show();
     i++;
@@ -81,7 +85,9 @@ void animation() {
   i = 0; 
   while (i < bullets.size()) {
     Bullet myBullet = bullets.get(i);
-    myBullet.act();
+    if (mode == PLAY) {
+      myBullet.act();
+    }
     myBullet.show();
     if (myBullet.lives <= 0) {
       bullets.remove(i);
@@ -93,8 +99,10 @@ void animation() {
 
 void handleButtonClicks() {
   if (nextWave.clicked && mobs.size() == 0) {
+    int x = 0;
     while (mobs.size() < waveCounter + 1) {
-      mobs.add(new Mob(0, 400, 1, 0));
+      mobs.add(new Mob(x, 400, 1, 0));
+      x=x-50;
     }
     waveCounter = waveCounter + 1;
   }
