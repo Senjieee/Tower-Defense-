@@ -11,6 +11,7 @@ final int BUILD    = 2;
 final int GAMEOVER = 3;
 int mode;
 int waveCounter;
+int flash;
 
 PFont doom;
 
@@ -32,7 +33,7 @@ boolean mouseReleased;
 boolean wasPressed;
 
 //Buttons
-Button start, nextWave;
+Button start, nextWave, build, play, tower;
 
 //Collections of objects
 Node[] nodes;
@@ -78,8 +79,6 @@ void initializeVariables() {
   mobs = new ArrayList<Mob>();
   towers = new ArrayList<Tower>();
   bullets = new ArrayList<Bullet>();
-  
-  towers.add(new Tower(100, 200, 0, 100));
 }
 
 void makeButtons() {
@@ -88,6 +87,9 @@ void makeButtons() {
 
   //PLAY - Next Wave, To Build Mode
   nextWave = new Button("", 900, 100, 140, 100, green, white);
+  build = new Button("BUILD", 900, 220, 140, 100, green, white);
+  play = new Button("PLAY", 900, 100, 140, 100, green, white);
+  tower = new Button("BUILD", 900, 220, 140, 100, blue, white);
 
   //BUILD - To play mode, Buy Sniper, Buy Gun, Buy AoE
 
@@ -127,4 +129,9 @@ void draw() {
   textSize(20);
   fill(black);
   text(mouseX + ", " + mouseY, mouseX, mouseY-20);
+  
+  flash++;
+  if (flash > 50) {
+    flash = 0;
+  }
 }

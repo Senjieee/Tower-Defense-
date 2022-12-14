@@ -55,7 +55,7 @@ class Button {
       fill(highlight);
     }
     if (img == null) {
-      textSize((h + w)/8);
+      textSize((h + w)/9);
       text(text, x, y);
     } else {
       image(img, x, y, w, h);

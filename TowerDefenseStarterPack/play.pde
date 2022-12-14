@@ -29,6 +29,10 @@ void map() {
     nodes[i].show();
     i++;
   }
+  
+  textSize(30);
+  fill(black);
+  text("Wave:" + waveCounter, 100, 30);
 }
 
 void playInterface() {
@@ -48,8 +52,7 @@ void playInterface() {
     nextWave.highlight = grey;
   }
   
-  fill(black);
-  text("Wave:" + waveCounter, 100, 30);
+  build.show();
 }
 
 void animation() {
@@ -90,7 +93,13 @@ void animation() {
 
 void handleButtonClicks() {
   if (nextWave.clicked && mobs.size() == 0) {
-    mobs.add(new Mob(0, 400, 1, 0));
-    waveCounter++;
+    while (mobs.size() < waveCounter + 1) {
+      mobs.add(new Mob(0, 400, 1, 0));
+    }
+    waveCounter = waveCounter + 1;
+  }
+  
+  if (build.clicked) {
+    mode = BUILD;
   }
 }
