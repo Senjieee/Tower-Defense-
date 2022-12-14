@@ -27,6 +27,6 @@ void handleBuildButtonClicks() {
   }
   
   if (tower.clicked) {
-    towers.add(new Tower(0, 0, 0, 30));
+    towers.add(new Tower(0, 0, 0, 60));
   }
 }

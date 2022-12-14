@@ -7,7 +7,8 @@
 class Mob {
   
   float x, y, vx, vy, d;
-  int lives;
+  float mobLives;
+  float healthBar;
   
   Mob(float _x, float _y, float _vx, float _vy) {
     x = _x;
@@ -15,7 +16,8 @@ class Mob {
     vx = _vx;
     vy = _vy;
     d = 40;
-    lives = 1;
+    mobLives = 3;
+    healthBar = map(mobLives, 3, 0, 50, 0);
   }
   
   void show() {
@@ -23,9 +25,20 @@ class Mob {
     stroke(greenSwamp);
     strokeWeight(3);
     circle(x, y, d);
+    strokeWeight(2);
+    stroke(black);
+    fill(red);
+    rect(x, y - 30, 50, 10);
+    noStroke();
+    fill(green);
+    rect(x, y - 30, healthBar, 8);
   }
   
   void act() {
+    if (x >= d/2 + 800) {
+      mobLives = 0;
+    }
+    
     x = x + vx;
     y = y + vy;
     
@@ -42,8 +55,8 @@ class Mob {
     while (i < bullets.size()) {
       Bullet myBullet = bullets.get(i);
       if (dist(myBullet.x, myBullet.y, x, y) < d/2 + myBullet.d/2) {
-        lives = lives - 1;
-        myBullet.lives--;
+        mobLives = mobLives - 1;
+        myBullet.bulletLives--;
       }
       i++;
     }

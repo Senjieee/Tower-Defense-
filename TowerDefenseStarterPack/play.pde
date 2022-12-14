@@ -5,6 +5,13 @@ void play() {
   animation();
   playInterface();
   handleButtonClicks();
+  
+  lives = 3;
+  money = 10000;
+  
+  if(lives <= 0) {
+    mode = GAMEOVER;
+  }
 }
 
 void map() {
@@ -32,7 +39,7 @@ void map() {
   
   textSize(30);
   fill(black);
-  text("Wave:" + waveCounter, 100, 30);
+  text("Wave:" + waveCounter, 270, 30);
 }
 
 void playInterface() {
@@ -56,6 +63,13 @@ void playInterface() {
 }
 
 void animation() {
+  fill(black);
+  textSize(30);
+  textAlign(CORNER);
+  text("Lives:" +  lives, 30, 45);
+  text("Money:$" +  money, 370, 45);
+  textAlign(CENTER, CENTER);
+  
   int i = 0;
   while (i < mobs.size()) {
     Mob myMob = mobs.get(i);
@@ -63,7 +77,7 @@ void animation() {
       myMob.act();
     }
     myMob.show();
-    if (myMob.lives <= 0) {
+    if (myMob.mobLives <= 0) {
       mobs.remove(i);
     } else {
       i++;
@@ -89,7 +103,7 @@ void animation() {
       myBullet.act();
     }
     myBullet.show();
-    if (myBullet.lives <= 0) {
+    if (myBullet.bulletLives <= 0) {
       bullets.remove(i);
     } else {
       i++;

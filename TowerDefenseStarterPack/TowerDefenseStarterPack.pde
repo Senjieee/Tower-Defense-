@@ -12,6 +12,8 @@ final int GAMEOVER = 3;
 int mode;
 int waveCounter;
 int flash;
+int lives;
+int money;
 
 PFont doom;
 

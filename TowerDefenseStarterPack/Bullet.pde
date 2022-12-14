@@ -4,7 +4,7 @@
 class Bullet {
   
   float x, y, vx, vy, d;
-  int lives;
+  int bulletLives;
   
   Bullet(float _x, float _y, float _vx, float _vy) {
     x = _x;
@@ -12,7 +12,7 @@ class Bullet {
     vx = _vx;
     vy = _vy;
     d = 15;
-    lives = 1;
+    bulletLives = 1;
   }
   
   void show() {
@@ -27,7 +27,7 @@ class Bullet {
     y = y + vy;
     
     if (x < 0 || x > width || y < -100 || y > height) {
-      lives = 0;
+      bulletLives = 0;
     }
   }
 }
