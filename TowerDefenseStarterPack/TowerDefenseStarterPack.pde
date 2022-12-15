@@ -9,7 +9,13 @@ final int INTRO    = 0;
 final int PLAY     = 1;
 final int BUILD    = 2;
 final int GAMEOVER = 3;
+final int MAPSELECT = 4;
+
+final int map1 = 1;
+final int map2 = 2;
+
 int mode;
+int map;
 int waveCounter;
 int flash;
 int lives;
@@ -35,7 +41,7 @@ boolean mouseReleased;
 boolean wasPressed;
 
 //Buttons
-Button start, nextWave, build, play, gun, sniper, aoe, menu, retry;
+Button start, nextWave, build, play, gun, sniper, aoe, menu, retry, map1Select, map2Select;
 
 //Collections of objects
 Node[] nodes;
@@ -92,7 +98,7 @@ void makeButtons() {
   start = new Button("START", width/2, 3*height/5, 200, 100, white, black);
 
   //PLAY - Next Wave, To Build Mode
-  nextWave = new Button("", 900, 100, 140, 100, green, white);
+  nextWave = new Button("NEXT", 900, 100, 140, 100, green, white);
   build = new Button("BUILD", 900, 220, 140, 100, green, white);
   play = new Button("PLAY", 900, 100, 140, 100, green, white);
   gun = new Button("GUN", 900, 220, 140, 100, blue, white);
@@ -100,6 +106,8 @@ void makeButtons() {
   sniper = new Button("SNIPE", 900, 460, 140, 100, blue, white);
   menu = new Button("MENU", 900, 100, 140, 100, green, white);
   retry = new Button("AGAIN", 900, 220, 140, 100, green, white);
+  map1Select = new Button("", 700, height/2, 300, 300, white, yellow);
+  map2Select = new Button("", 300, height/2, 300, 300, white, yellow);
 
   //BUILD - To play mode, Buy Sniper, Buy Gun, Buy AoE
 
@@ -134,6 +142,8 @@ void draw() {
     build();
   } else if (mode == GAMEOVER) {
     gameOver();
+  } else if (mode == MAPSELECT) {
+    mapselect();
   }
   
   textSize(20);

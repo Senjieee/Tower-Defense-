@@ -25,13 +25,7 @@ class Mob {
     stroke(greenSwamp);
     strokeWeight(3);
     circle(x, y, d);
-    strokeWeight(2);
-    stroke(black);
-    fill(red);
-    rect(x, y - 30, 50, 10);
-    noStroke();
-    fill(green);
-    rect(x, y - 30, healthBar, 8);
+    healthbar();
   }
   
   void act() {
@@ -57,5 +51,17 @@ class Mob {
       }
       i++;
     }
+  }
+  
+  void healthbar() {
+    rectMode(CORNER);
+    noStroke();
+    fill(black);
+    rect(x-27, y-(d)-2, 54, 15);//background
+    fill(red);
+    rect(x-25, y-(d), 50, 10);
+    fill(green);
+    rect(x-25, y-(d), mobLives*50/3, 10);
+    rectMode(CENTER);
   }
 }

@@ -4,7 +4,7 @@ void intro() {
   background(red);
   start.show();
   if (start.clicked) {
-    mode = PLAY;
+    mode = MAPSELECT;
   }
   fill(blue);
   textSize(80);
