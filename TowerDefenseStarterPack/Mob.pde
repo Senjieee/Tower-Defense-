@@ -35,9 +35,6 @@ class Mob {
   }
   
   void act() {
-    if (x >= d/2 + 800) {
-      mobLives = 0;
-    }
     
     x = x + vx;
     y = y + vy;

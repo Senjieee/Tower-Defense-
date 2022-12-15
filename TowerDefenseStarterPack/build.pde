@@ -18,7 +18,9 @@ void buildInterface() {
   rect(900, height/2, 200, height);
   
   play.show();
-  tower.show();
+  gun.show();
+  aoe.show();
+  sniper.show();
 }
 
 void handleBuildButtonClicks() {
@@ -26,7 +28,13 @@ void handleBuildButtonClicks() {
     mode = PLAY;
   }
   
-  if (tower.clicked) {
+  if (gun.clicked && money >= 5000) {
     towers.add(new Tower(0, 0, 0, 60));
+  }
+  
+  if (aoe.clicked && money >= 10000) {
+  }
+  
+  if (sniper.clicked && money >= 10000) {
   }
 }

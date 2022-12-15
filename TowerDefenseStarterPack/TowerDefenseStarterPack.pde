@@ -35,7 +35,7 @@ boolean mouseReleased;
 boolean wasPressed;
 
 //Buttons
-Button start, nextWave, build, play, tower;
+Button start, nextWave, build, play, gun, sniper, aoe, menu, retry;
 
 //Collections of objects
 Node[] nodes;
@@ -81,6 +81,10 @@ void initializeVariables() {
   mobs = new ArrayList<Mob>();
   towers = new ArrayList<Tower>();
   bullets = new ArrayList<Bullet>();
+  
+  lives = 3;
+  money = 10000;
+  waveCounter = 0;
 }
 
 void makeButtons() {
@@ -91,7 +95,11 @@ void makeButtons() {
   nextWave = new Button("", 900, 100, 140, 100, green, white);
   build = new Button("BUILD", 900, 220, 140, 100, green, white);
   play = new Button("PLAY", 900, 100, 140, 100, green, white);
-  tower = new Button("BUILD", 900, 220, 140, 100, blue, white);
+  gun = new Button("GUN", 900, 220, 140, 100, blue, white);
+  aoe = new Button("AOE", 900, 340, 140, 100, blue, white);
+  sniper = new Button("SNIPE", 900, 460, 140, 100, blue, white);
+  menu = new Button("MENU", 900, 100, 140, 100, green, white);
+  retry = new Button("AGAIN", 900, 220, 140, 100, green, white);
 
   //BUILD - To play mode, Buy Sniper, Buy Gun, Buy AoE
 

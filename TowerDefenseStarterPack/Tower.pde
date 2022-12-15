@@ -36,10 +36,11 @@ class Tower {
       square(x, y, 40);
     } else if (towerMode == PLACING) {
       square(mouseX, mouseY, 40);
-      if (mousePressed) {
+      if (mousePressed && mouseX < 800) {
         towerMode = PLACED;
         x = mouseX;
         y = mouseY;
+        money = money - 5000;
       }
     }
   }
