@@ -113,6 +113,19 @@ void animation() {
     }
   }
   
+  i = 0;
+  while (i < rings.size()) {
+    AoE_Ring myRing = rings.get(i);
+    if (mobs.size() >= 0) {
+      myRing.show();
+    }
+    if (myRing.ringLives <= 0) {
+      rings.remove(i);
+    } else {
+      i++;
+    }
+  }
+  
   fill(black);
   textSize(30);
   textAlign(CORNER);

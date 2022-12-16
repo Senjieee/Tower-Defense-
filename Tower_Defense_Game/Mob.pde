@@ -41,7 +41,7 @@ class Mob {
     
     int i = 0;
     while (i < nodes.length) {
-      if (dist(nodes[i].x, nodes[i].y, x, y) < 1) {
+      if (dist(nodes[i].x, nodes[i].y, x, y) < speed/2 + 1) {
         vx = nodes[i].dx;
         vy = nodes[i].dy;
       }
@@ -54,6 +54,16 @@ class Mob {
       if (dist(myBullet.x, myBullet.y, x, y) < d/2 + myBullet.d/2) {
         mobLives = mobLives - 1;
         myBullet.bulletLives--;
+      }
+      i++;
+    }
+    
+    i = 0;
+    while (i < rings.size()) {
+      AoE_Ring myRing = rings.get(i);
+      if (dist(myRing.x, myRing.y, x, y) < d/2 + myRing.d/2) {
+        mobLives = mobLives - 1;
+        myRing.ringLives = 0;
       }
       i++;
     }

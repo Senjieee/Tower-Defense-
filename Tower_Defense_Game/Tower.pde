@@ -28,7 +28,7 @@ class Tower {
     towerMode = PLACING;
     towerType = type;
     if (towerType == GUN) threshold = 30;
-    if (towerType == AOE) threshold = 30;
+    if (towerType == AOE) threshold = 60;
     if (towerType == SNIPER) threshold = 90;
   }
   
@@ -65,12 +65,6 @@ class Tower {
   }
   
   void showAoeTower() {
-    if (cooldown >= 20) {
-      stroke(red);
-      strokeWeight(3);
-      fill(red2);
-      circle(x, y, 300);
-    }
     stroke(black);
     strokeWeight(4);
     fill(blue);
@@ -82,6 +76,13 @@ class Tower {
     strokeWeight(4);
     fill(black);
     triangle(x-20, y+20, x+20, y+20, x, y-20);
+    
+    if (cooldown > 10 && mobs.size() > 0) {
+      Mob firstMob = mobs.get(0);
+      stroke(purple);
+      strokeWeight(2);
+      line(x, y, firstMob.x, firstMob.y);
+    }
   }
   
   void actGunTower() {
@@ -99,21 +100,13 @@ class Tower {
     cooldown++;
     if (cooldown >= threshold) {
       cooldown = 0;   
+      rings.add(new AoE_Ring(x, y, 300));
     }
-    
-    if (cooldown >= 20) {
-      stroke(red);
-      strokeWeight(3);
-      fill(red2);
-      circle(x, y, 300);
-    }
-    
     int i = 0;
-    while (i < mobs.size()) {
-      Mob myMob = mobs.get(i);
-      if (dist(myMob.x, myMob.y, x, y) < 150 + myMob.d/2) {
-        myMob.mobLives = myMob.mobLives - 1;
-        cooldown = 0;
+    while (i < rings.size()) {
+      AoE_Ring myRing = rings.get(i);
+      if (cooldown >= 20) {
+        myRing.ringLives = 0;
       }
       i++;
     }

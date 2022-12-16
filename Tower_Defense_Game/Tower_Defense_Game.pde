@@ -55,6 +55,7 @@ Node[] map2Nodes;
 ArrayList<Mob> mobs;
 ArrayList<Tower> towers;
 ArrayList<Bullet> bullets;
+ArrayList<AoE_Ring> rings;
 
 //Images and Gifs
 
@@ -94,6 +95,7 @@ void initializeVariables() {
   mobs = new ArrayList<Mob>();
   towers = new ArrayList<Tower>();
   bullets = new ArrayList<Bullet>();
+  rings = new ArrayList<AoE_Ring>();
   
   lives = 3;
   money = 10000;
