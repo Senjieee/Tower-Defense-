@@ -69,14 +69,6 @@ void playInterface() {
 }
 
 void animation() {
-  fill(black);
-  textSize(30);
-  textAlign(CORNER);
-  text("Lives:" +  lives, 30, 45);
-  text("Money:$" +  money, 370, 45);
-  textAlign(CENTER, CENTER);
-  text("Wave:" + waveCounter, 270, 30);
-  
   int i = 0;
   while (i < mobs.size()) {
     Mob myMob = mobs.get(i);
@@ -86,7 +78,7 @@ void animation() {
     myMob.show();
     if (myMob.mobLives <= 0) {
       mobs.remove(i);
-      money = money + 1000;
+      money = money + myMob.value;
     } else if (myMob.x >= myMob.d/2 + 800) {
       mobs.remove(i);
       lives--;
@@ -120,6 +112,14 @@ void animation() {
       i++;
     }
   }
+  
+  fill(black);
+  textSize(30);
+  textAlign(CORNER);
+  text("Lives:" +  lives, 30, 45);
+  text("Money:$" +  money, 370, 45);
+  textAlign(CENTER, CENTER);
+  text("Wave:" + waveCounter, 270, 30);
 }
 
 void handleButtonClicks() {
@@ -128,6 +128,26 @@ void handleButtonClicks() {
     while (mobs.size() < waveCounter + 1) {
       mobs.add(new Mob(x, 400, 1, 0));
       x=x-50;
+    }
+    
+    if (waveCounter % 3 == 0) {
+      int i = 0;
+      x = 50;
+      while (i < waveCounter/3) {
+        mobs.add(new ChonkyMob(x, 400, 1, 0));
+        x = x - 100;
+        i++;
+      }
+    }
+    
+    if (waveCounter % 3 == 0) {
+      int i = 0;
+      x = 0;
+      while (i < waveCounter/3) {
+        mobs.add(new SpeedyMob(x, 400, 1, 0));
+        x = x - 50;
+        i++;
+      }
     }
     waveCounter = waveCounter + 1;
   }

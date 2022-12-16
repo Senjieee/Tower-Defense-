@@ -30,12 +30,17 @@ void handleBuildButtonClicks() {
   }
   
   if (gun.clicked && money >= 5000) {
-    towers.add(new Tower(0, 0, 0, 60));
+    towers.add(new Tower(GUN));
+    money = money - 5000;
   }
   
-  if (aoe.clicked && money >= 10000) {
+  if (aoe.clicked && money >= 8000) {
+    towers.add(new Tower(AOE));
+    money = money - 8000;
   }
   
   if (sniper.clicked && money >= 10000) {
+    towers.add(new Tower(SNIPER));
+    money = money - 10000;
   }
 }

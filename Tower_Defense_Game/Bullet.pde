@@ -5,20 +5,22 @@ class Bullet {
   
   float x, y, vx, vy, d;
   int bulletLives;
+  color bulletColor;
   
-  Bullet(float _x, float _y, float _vx, float _vy) {
+  Bullet(float _x, float _y, float _vx, float _vy, float _d, color _bulletColor) {
     x = _x;
     y = _y;
     vx = _vx;
     vy = _vy;
-    d = 15;
+    d = _d;
     bulletLives = 1;
+    bulletColor = _bulletColor;
   }
   
   void show() {
     stroke(black);
     strokeWeight(4);
-    fill(yellowBullet);
+    fill(bulletColor);
     circle(x, y, d);
   }
   

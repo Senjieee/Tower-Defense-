@@ -14,6 +14,10 @@ final int MAPSELECT = 4;
 final int map1 = 1;
 final int map2 = 2;
 
+final int GUN = 1;
+final int AOE = 2;
+final int SNIPER = 3;
+
 int mode;
 int map;
 int waveCounter;
@@ -35,6 +39,7 @@ color black = color(0);
 color white = color(255);
 color greenSwamp = color(32, 100, 28);
 color yellowBullet = color(255, 196, 0);
+color red2 = color(155, 9, 14);
 
 //Mouse & Keyboard interaction variables
 boolean mouseReleased;
@@ -102,7 +107,7 @@ void makeButtons() {
   //PLAY - Next Wave, To Build Mode
   nextWave = new Button("NEXT", 900, 100, 140, 100, green, white);
   build = new Button("BUILD", 900, 220, 140, 100, green, white);
-  play = new Button("PLAY", 900, 100, 140, 100, yellow, white);
+  play = new Button("PLAY", 900, 100, 140, 100, green, white);
   gun = new Button("GUN", 900, 220, 140, 100, red, white);
   aoe = new Button("AOE", 900, 340, 140, 100, red, white);
   sniper = new Button("SNIPE", 900, 460, 140, 100, red, white);
@@ -159,10 +164,6 @@ void draw() {
   } else if (mode == MAPSELECT) {
     mapselect();
   }
-  
-  textSize(20);
-  fill(black);
-  text(mouseX + ", " + mouseY, mouseX, mouseY-20);
   
   flash++;
   if (flash > 50) {

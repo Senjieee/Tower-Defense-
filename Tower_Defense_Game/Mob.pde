@@ -7,8 +7,10 @@
 class Mob {
   
   float x, y, vx, vy, d;
-  float mobLives;
-  float healthBar;
+  float mobLives, maxlives;
+  int value;
+  color fillColor, strokeColor;
+  float speed;
   
   Mob(float _x, float _y, float _vx, float _vy) {
     x = _x;
@@ -16,13 +18,17 @@ class Mob {
     vx = _vx;
     vy = _vy;
     d = 40;
-    mobLives = 3;
-    healthBar = map(mobLives, 3, 0, 50, 0);
+    maxlives = 5 + waveCounter/5;
+    mobLives = maxlives;
+    speed = 1;
+    value = 1000;
+    strokeColor = black;
+    fillColor = purple;
   }
   
   void show() {
-    fill(purple);
-    stroke(black);
+    fill(fillColor);
+    stroke(strokeColor);
     strokeWeight(3);
     circle(x, y, d);
     healthbar();
@@ -30,8 +36,8 @@ class Mob {
   
   void act() {
     
-    x = x + vx;
-    y = y + vy;
+    x = x + vx*speed;
+    y = y + vy*speed;
     
     int i = 0;
     while (i < nodes.length) {
@@ -61,7 +67,7 @@ class Mob {
     fill(red);
     rect(x-25, y-(d), 50, 10);
     fill(green);
-    rect(x-25, y-(d), mobLives*50/3, 10);
+    rect(x-25, y-(d), mobLives*50/maxlives, 10);
     rectMode(CENTER);
   }
 }
